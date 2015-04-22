@@ -4,6 +4,7 @@ var http = require('http');
 var rr = require('ractive-render');
 var socketIO = require('socket.io');
 var ss = require('socket.io-stream');
+var fs = require('fs');
 
 var app = express();
 
@@ -34,6 +35,18 @@ io.on('connection', function (socket) {
         stream.on('end', function (){
             console.log('End of audio stream');
         });
+    });
+
+    socket.on('playRequest', function () {
+        console.log('Received play request');
+        // setup a stream to communicate with client
+        var stream = ss.createStream();
+        var meta = {type: 'rain'};
+        ss(socket).emit('playResult', stream, meta);
+
+        // pipe the wav file onto that stream
+        var wavStream = fs.createReadStream(__dirname + '/rain.wav');
+        wavStream.pipe(stream);
     });
 });
 server.listen(port);
