@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.stroked, .stroked-blue {
+.stroked-blue {
   -webkit-text-stroke: 1px #1f6fd9;
   -webkit-text-fill-color: #1f6fd9;
   color: #1f6fd9;
