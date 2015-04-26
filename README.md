@@ -51,6 +51,13 @@ paths: {
 },
 ```
 * (PREFERRED) Softlink it into the same directory as your `main.js`, so when you update spoke-client, the softlink automatically gets updated.
+```bash
+$ cd my_javascript_dir
+$ ls
+main.js (and other stuff)
+# change the relative path as necessary
+$ ln -s ../../node_modules/spoke-client/spoke.min.js ./spoke.min.js
+```
 ```javascript
 paths: {
   'spoke': './spoke.min',
