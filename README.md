@@ -9,8 +9,12 @@ Using Require.js for your own js project is highly recommended: it is great for 
 
 ## Using spoke-client in your own project
 ### If you are using Node and npm
-```
+```sh
 $ npm install spoke-client --save
+```
+or directly from GitHub
+```sh
+$ npm install --save git@github.com:psaylor/spoke-client.git
 ```
 This will install spoke-client under `node_modules/` and keep track of your dependency on this project in `package.json`.
 The most recent javascript and css libraries are compiled and minified for you in the root of the project. The javascript library is currently only compatible with Require.js AMD module loading, so you should create your own `main.js` to load into your HTML and which will contain a dependency on the spoke client library (an example of this can be seen in test/). For example,
