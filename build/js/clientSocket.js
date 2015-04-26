@@ -1,1 +1,0 @@
-define(["jquery","socketio","socketio-stream"],function(e,t,n){var r=t({});return r.on("connect",function(){console.log("Client socket connected!")}),r.on("disconnect",function(){console.log("Client disconnected from server, please wait...")}),{socket:r,ioStream:n}});

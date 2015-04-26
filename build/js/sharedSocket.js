@@ -1,0 +1,1 @@
+define(["jquery","socketio","socketio-stream"],function(e,t,n){var r={},i=function(e){e=e||"";var t=r[e];return t?t:(r[e]=s(e),r[e])},s=function(e){var n=t({path:e});n.on("connect",function(){console.log("Client socket connected to ",e)}),n.on("disconnect",function(){console.log("Client socket disconnected from",e)})};return{getSocket:i,_initializeSocket:s,ioStream:n}});
