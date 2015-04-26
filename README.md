@@ -48,7 +48,7 @@ Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/spoke.min.js
 ```
 ```
 $ cd spoke-client
-$ r.js -o buildCss.js 
+$ r.js -o buildCss.js
 
 /Users/patriciasaylor/Documents/code/spoke-client/spoke.min.css
 ----------------
@@ -87,11 +87,9 @@ css/micIcon.css
 css/spoke.css
 ```
 
-Save the headache with command line params by putting a build profile in build.js
-Have to make spoke.js main module loader into define instead of require?
-Yes, otherwise when you require it in another module you get undefined
-even though it is returning something...odd
+All of these build options can be overriden by command line params. Putting them in a build profile saves the headache with command line params every time. 
 
+Also note that for spoke.js, the module loader needs to be `define` not `require` in order for that module to return references to all the other modules. Otherwise, with `require` it returns undefined.
 
 ### Notes
 These guides were useful for making a standalone library using Requirejs,
