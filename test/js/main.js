@@ -15,8 +15,8 @@ require(['jquery', 'spoke'],
         */
         console.log('loaded spoke:', spoke);
 
-        var socket = spoke.clientSocket.socket;
-        var ioStream = spoke.clientSocket.ioStream;
+        var socket = spoke.sharedSocket.getSocket();
+        var ioStream = spoke.sharedSocket.ioStream;
 
         /* Volume Meter Test */
         var volumeMeterElement = $('.myVolumeMeter');
