@@ -14,6 +14,8 @@ app.set('views', __dirname);
 rr.clearCache();
 
 app.use(express.static(path.join(__dirname, '../lib')));
+app.use(express.static(path.join(__dirname, 'js/')));
+// app.use(express.static(path.join(__dirname, '../')));
 
 app.get('/', function (req, res) {
     res.render('test');
@@ -30,7 +32,7 @@ io.on('connection', function (socket) {
     ss(socket).on('audioStream', function (stream, data) {
         console.log('Receiving stream audio with data', data);
         stream.on('data', function (d) {
-            console.log('Got data', typeof(d), d.length);
+            // console.log('Got data', typeof(d), d.length);
         });
         stream.on('end', function (){
             console.log('End of audio stream');

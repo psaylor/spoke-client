@@ -3,57 +3,37 @@ require.config({
         /* Configure location for third-party libraries, using CDN and a local fallback */
         'jquery': [
             'https://code.jquery.com/jquery-1.11.0.min',
-            'third-party/jquery-1.11.0.min',
         ],
-        'ractive': [
-            'https://cdnjs.cloudflare.com/ajax/libs/ractive/0.7.2/ractive.min',
-            'third-party/ractive-0.7.2.min',
-        ],
-        'modernizr': [
-            'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min',
-            'third-party/modernizr.custom.68208',
-        ],
-        'socketio': [
-            'https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min',
-            'third-party/socketio-1.3.5.min',
-        ],
-        'socketio-stream': 'third-party/socket.io-stream',
-        'promise': [
-            'https://cdn.jsdelivr.net/bluebird/latest/bluebird.min',
-            'third-party/bluebird-2.9.24.min',
-        ],
-    },
-    shim: {
-        'modernizr': {
-            exports: 'Modernizr',
-        },
+        'spoke': 'spoke-built',
     },
 });
 
-require(['jquery', 'crossBrowserAudio', 'clientSocket', 'microphone', 'recorder', 'player', 'recognizer'], 
-    function($, crossBrowserAudio, clientSocket, mic, Recorder, Player, recog) {
+require(['jquery', 'spoke'], 
+    function($, spoke) {
         /**
         * YOUR CODE HERE
         */
-        var socket = clientSocket.socket;
-        var ioStream = clientSocket.ioStream;
+        console.log('loaded spoke:', spoke);
+
+        var socket = spoke.clientSocket.socket;
+        var ioStream = spoke.clientSocket.ioStream;
 
         /* Volume Meter Test */
         var volumeMeterElement = $('.myVolumeMeter');
-        var volumeMeterColorLayer = $('.fa-microphone.stroked');
-        var volumeMeter = mic.VolumeMeter(volumeMeterElement);
+        var volumeMeter = spoke.microphone.VolumeMeter(volumeMeterElement);
         volumeMeter.on('volumeLevel.spoke.volumeMeter', function (event, volumeLevel) {
             /* Do whatever you want with the volume level here */
         });
 
         /* Recorder Test */
         var recordButtonElement = $(".myRecordButton");
+        var recordButtonColorLayer = recordButtonElement.find('.fa-microphone.stroked');
         var onStartEventData = {
             index: 5,
             uttId: 4,
             myname: 'trish',
         };
-        var recorder = Recorder(recordButtonElement);
+        var recorder = spoke.Recorder(recordButtonElement);
 
         // Can add listener either on the recordBtn passed in, or on the 
         // recorder instance by first wrapping it as a jQuery object
@@ -64,12 +44,12 @@ require(['jquery', 'crossBrowserAudio', 'clientSocket', 'microphone', 'recorder'
 
         recorder.on('start.spoke.recorder', {me: 'trish'}, function (e) {
             console.log('Started spoke recorder:', e);
-            volumeMeterColorLayer.toggleClass('stroked-blue stroked-red');
+            recordButtonColorLayer.toggleClass('stroked-blue stroked-red');
         });
 
         recorder.on('stop.spoke.recorder', {me: 'patricia'}, function (e) {
             console.log('Stopped spoke recorder:', e);
-            volumeMeterColorLayer.toggleClass('stroked-blue stroked-red');
+            recordButtonColorLayer.toggleClass('stroked-blue stroked-red');
         });
 
         /* Player Test */
@@ -81,7 +61,7 @@ require(['jquery', 'crossBrowserAudio', 'clientSocket', 'microphone', 'recorder'
         // Listen for playback result, and play it
         ioStream(socket).on('playResult', function (audioStream, data) {
             console.log('Playback result for ', data);
-            var player = Player(audioStream);
+            var player = spoke.Player(audioStream);
             player.on('ready.spoke.player', function () {
                 console.log('Audio ready to play.');
             });
@@ -95,7 +75,7 @@ require(['jquery', 'crossBrowserAudio', 'clientSocket', 'microphone', 'recorder'
         var recognizerButtonElement = $('.myRecognizeButton');
         var recognizerButtonColor = recognizerButtonElement.find('.stroked');
         var resultsElement = $('.myRecognitionResults');
-        var recognizer = recog.Recognizer(recognizerButtonElement);
+        var recognizer = spoke.recognizer.Recognizer(recognizerButtonElement);
 
         recognizer.on('start.spoke.recognizer', function (event) {
             console.log('Spoke Recognizer start', event);
