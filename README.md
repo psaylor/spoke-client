@@ -10,17 +10,82 @@ Using Require.js for your own js project is highly recommended: it is great for 
 ## Using spoke-client in your own project
 
 ## Developing on this library
-To develop on this library:
-Setup requirejs: http://requirejs.org/docs/optimization.html
-> npm install -g requirejs
+You should have Node and npm installed already to start development. Then you can install the requirejs project through npm, either following [their own guide](http://requirejs.org/docs/optimization.html) or the short version of it here:
+Setup requirejs globally so the r.js optimizer will be on your path automatically
+```
+$ npm install -g requirejs
+```
 or
-> sudo npm install -g requirejs
-Now the optimizer script will be globally available to you.
-> r.js -o app.build.js
+```
+$ sudo npm install -g requirejs
+```
+Or install it locally under your current project working directory
+```
+$ npm install requirejs
+```
+Now you will find r.js located at project_dir/node_modules/requirejs/bin/r.js
 
-For local install,
-> npm install requirejs
-now find r.js located at project_dir/node_modules/requirejs/bin/r.js
+After you make changes and are ready to commit a new version, you should run all the builds to provide ready-to-go code to other developers:
+```
+$ cd spoke-client/
+$ r.js -o buildSpoke.js 
+
+Tracing dependencies for: spoke
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/spoke.min.js
+
+/Users/patriciasaylor/Documents/code/spoke-client/spoke.min.js
+----------------
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/third-party/socket.io-stream.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/clientSocket.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/crossBrowserAudio.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/sharedAudio.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/utils.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/microphone.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/player.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/recognizer.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/recorder.js
+/Users/patriciasaylor/Documents/code/spoke-client/lib/js/spoke.js
+```
+```
+$ cd spoke-client
+$ r.js -o buildCss.js 
+
+/Users/patriciasaylor/Documents/code/spoke-client/spoke.min.css
+----------------
+/Users/patriciasaylor/Documents/code/spoke-client/lib/css/general.css
+/Users/patriciasaylor/Documents/code/spoke-client/lib/css/micIcon.css
+/Users/patriciasaylor/Documents/code/spoke-client/lib/css/spoke.css
+```
+```
+$ cd spoke-client
+$  r.js -o buildAll.js 
+Optimizing (standard) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/css/general.css
+Optimizing (standard) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/css/micIcon.css
+Optimizing (standard) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/css/spoke.css
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/clientSocket.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/crossBrowserAudio.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/microphone.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/player.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/recognizer.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/recorder.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/sharedAudio.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/spoke.js
+Uglifying file: /Users/patriciasaylor/Documents/code/spoke-client/build/js/utils.js
+
+css/general.css
+----------------
+css/general.css
+
+css/micIcon.css
+----------------
+css/micIcon.css
+
+css/spoke.css
+----------------
+css/general.css
+css/micIcon.css
+css/spoke.css
+```
 
 Save the headache with command line params by putting a build profile in build.js
 Have to make spoke.js main module loader into define instead of require?
