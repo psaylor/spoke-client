@@ -33,14 +33,25 @@ require(['spoke', 'otherDep1', 'otherDep2'], function (spoke, dep1, dep2) {
 });
 ```
 Inside your main.js you can include Spoke in a few ways:
-1. reference the full path of its location, which is under the spoke-client module `your_project_dir/node_modules/spoke-client/spoke.min.js` (don't forget to take off .js for the require.config path)
-```
+
+* reference the full path of its location, which is under the spoke-client module `your_project_dir/node_modules/spoke-client/spoke.min.js` (so you will probably have to go up a couple directories and then back down, and don't forget to take off .js for the require.config path)
+```javascript
 paths: {
   'spoke': '../../node_modules/spoke-client/spoke.min',
 },
 ```
-2. Copy it into the same directory as your `main.js`, so then the path you configure could just be a shortened name
-3. Softlink it into the same directory as your
+* Copy it into the same directory as your `main.js`, so then the path you configure could just be a shortened name
+```javascript
+paths: {
+  'spoke': './spoke.min',
+},
+```
+* (PREFERRED) Softlink it into the same directory as your `main.js`, so when you update spoke-client, the softlink automatically gets updated.
+```javascript
+paths: {
+  'spoke': './spoke.min',
+},
+```
 
 ## Developing on this library
 You should have Node and npm installed already to start development. Then you can install the requirejs project through npm, either following [their own guide](http://requirejs.org/docs/optimization.html) or the short version of it here:
