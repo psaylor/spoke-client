@@ -20,5 +20,5 @@
     /* The file to optimize */
     name: 'spoke',
     /* The optimized output file */
-    out: 'spoke-built.js',
+    out: 'spoke.min.js',
 })

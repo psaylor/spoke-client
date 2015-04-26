@@ -4,7 +4,7 @@ require.config({
         'jquery': [
             'https://code.jquery.com/jquery-1.11.0.min',
         ],
-        'spoke': 'spoke-built',
+        'spoke': 'spoke.min',
     },
 });
 
