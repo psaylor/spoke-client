@@ -15,7 +15,7 @@ rr.clearCache();
 
 app.use(express.static(path.join(__dirname, '../lib')));
 app.use(express.static(path.join(__dirname, 'js/')));
-// app.use(express.static(path.join(__dirname, '../')));
+app.use(express.static(path.join(__dirname, 'css/')));
 
 app.get('/', function (req, res) {
     res.render('test');
