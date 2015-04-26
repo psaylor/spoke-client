@@ -8,6 +8,39 @@ The built file [spoke.min.js](./spoke.min.js) can be loaded into your own javasc
 Using Require.js for your own js project is highly recommended: it is great for explicitly listing your dependencies, and then it handles the asynchronous loading and execution of your file tree. It also handles smoothly configuring a fallback for third-party libraries you would normally load over CDN. Last but not least, with loader plugins you can also use it to require as dependencies non-Javascript assets, like text. This is especially helpful when using a templating library, since you might break up your page into many small html snippets that are reusable and that need to be loaded asynchronously onto your page. This text loader plugin can also be used with building and optimizing the Require.js code before deployment.
 
 ## Using spoke-client in your own project
+### If you are using Node and npm
+```
+$ npm install spoke-client --save
+```
+This will install spoke-client under `node_modules/` and keep track of your dependency on this project in `package.json`.
+The most recent javascript and css libraries are compiled and minified for you in the root of the project. The javascript library is currently only compatible with Require.js AMD module loading, so you should create your own `main.js` to load into your HTML and which will contain a dependency on the spoke client library (an example of this can be seen in test/). For example,
+```html
+<!-- index.html -->
+...
+<script src="path/to/require.js" data-main="main.js"></script>
+...
+```
+```javascript
+// main.js
+require.config({
+    paths: {
+      'spoke': 'path/to/spoke.min',
+    },
+});
+
+require(['spoke', 'otherDep1', 'otherDep2'], function (spoke, dep1, dep2) {
+  /* Your js code using Spoke here */
+});
+```
+Inside your main.js you can include Spoke in a few ways:
+1. reference the full path of its location, which is under the spoke-client module `your_project_dir/node_modules/spoke-client/spoke.min.js` (don't forget to take off .js for the require.config path)
+```
+paths: {
+  'spoke': '../../node_modules/spoke-client/spoke.min',
+},
+```
+2. Copy it into the same directory as your `main.js`, so then the path you configure could just be a shortened name
+3. Softlink it into the same directory as your
 
 ## Developing on this library
 You should have Node and npm installed already to start development. Then you can install the requirejs project through npm, either following [their own guide](http://requirejs.org/docs/optimization.html) or the short version of it here:
