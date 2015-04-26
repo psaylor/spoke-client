@@ -31,29 +31,11 @@ now find r.js located at project_dir/node_modules/requirejs/bin/r.js
 
 Save the headache with command line params by putting a build profile in build.js
 
-Getting Error:
-529 patriciasaylor:spoke-client$ r.js -o build.js 
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/lib/css/micIcon.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/lib/css/style.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io/node_modules/engine.io/node_modules/engine.io-parser/node_modules/utf8/coverage/prettify.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io/node_modules/socket.io-adapter/node_modules/socket.io-parser/node_modules/json3/coverage/lcov-report/prettify.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io/node_modules/socket.io-parser/node_modules/json3/coverage/lcov-report/prettify.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/utf8/coverage/prettify.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/node_modules/global/test/mocha.css
-Optimizing (standard.keepLines.keepWhitespace) CSS file: /Users/patriciasaylor/Documents/code/spoke-client/build/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/coverage/lcov-report/prettify.css
-
-Tracing dependencies for: js/spoke
-Error: ENOENT, no such file or directory '/Users/patriciasaylor/Documents/code/spoke-client/build/lib/crossBrowserAudio.js'
-In module tree:
-    js/spoke
-
-Error: Error: ENOENT, no such file or directory '/Users/patriciasaylor/Documents/code/spoke-client/build/lib/crossBrowserAudio.js'
-In module tree:
-    js/spoke
-
-    at Error (native)
-
-Try to fix by adding baseUrl: 'js/' to lib/js/spoke.js
+Other guides to setting up compiling and dist:
+http://tech.pro/blog/1639/using-rjs-to-optimize-your-requirejs-project
+http://orizens.com/wp/topics/requirejs-optimizing-and-building-one-file/
+http://www.sitepoint.com/building-library-with-requirejs/
+Loading css? http://requirejs.org/docs/faq-advanced.html#css
 
 Have to make spoke.js main module loader into define instead of require?
 Yes, otherwise when you require it in another module you get undefined
