@@ -4,6 +4,9 @@
     */
     baseUrl: 'lib/js',
 
+    /* For development */
+    // optimize: 'none',
+
     /* 
      Load require.config from the main file specified here
      but override CDN libraries with empty:
