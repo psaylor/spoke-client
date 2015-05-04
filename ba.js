@@ -6652,7 +6652,7 @@ define('recorder',['jquery', 'sharedAudio', 'utils', 'sharedSocket'],
             options = options || {};
             this.settings = $.extend({}, Recorder.DEFAULTS, options);
             this.recordBtn = $(element);
-            this.socket = sharedSocket.getSocket(this.settings.socketConfig);
+            this.socket = sharedSocket.getSocket(this.settings.socketPath);
 
             // Wrap this Recorder instance with jQuery so we can trigger custom events
             this.$this = $(this);
@@ -6683,10 +6683,7 @@ define('recorder',['jquery', 'sharedAudio', 'utils', 'sharedSocket'],
             socketioEvents: {
                 emitAudioStream: 'audioStream',
             },
-            socketConfig: {
-                socketPath: '',
-                socketUrl: '/',
-            },
+            socketPath: '',
             audioMetadata: {},
         };
 

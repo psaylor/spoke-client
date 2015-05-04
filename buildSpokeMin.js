@@ -21,10 +21,6 @@
     /* The file to optimize */
     name: 'spoke',
     /* The optimized output file */
-    // out: 'spoke.min.js',
-
-    /* For development, uncomment these lines */
-    optimize: 'none',
-    out: 'spoke.js',
+    out: 'spoke.min.js',
 
 })
