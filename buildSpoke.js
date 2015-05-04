@@ -4,9 +4,7 @@
     */
     baseUrl: 'lib/js',
 
-    /* For development */
-    // optimize: 'none',
-
+    
     /* 
      Load require.config from the main file specified here
      but override CDN libraries with empty:
@@ -24,4 +22,9 @@
     name: 'spoke',
     /* The optimized output file */
     out: 'spoke.min.js',
+
+    /* For development, uncomment these lines */
+    // optimize: 'none',
+    // out: 'spoke.js',
+
 })

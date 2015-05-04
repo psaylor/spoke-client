@@ -6479,21 +6479,21 @@ define('sharedSocket',['jquery', 'socketio', 'socketio-stream'],
     function($, io, ioStream) {
 
         // Maintain a mapping from paths to socket connections
-        var sockets = {}; 
+        var socket = null;
 
-        var getSocket = function (path) {
-            path = path || '';
-            var socket = sockets[path];
+        var getSocket = function (config) {
             if (socket) {
                 return socket;
             } else {
-                sockets[path] = _initializeSocket(path);
-                return sockets[path];
+                socket = _initializeSocket(config);
+                return socket;
             }
         };
 
-        var _initializeSocket = function (path) {
-            var socket = io({
+        var _initializeSocket = function (config) {
+            var path = config.path || '';
+            var url = config.url || '/';
+            var socket = io(url, {
                 path: path,
             });
             socket.on('connect', function () {
@@ -6671,7 +6671,8 @@ define('recorder',['jquery', 'sharedAudio', 'utils', 'sharedSocket'],
             });
 
             this.socket.on('audioStreamResult', function (result) {
-                console.log('Audio stream result for', result);
+                console.log('Recorder firing audio stream result for', result);
+                self.$this.trigger('result.spoke.recorder', [result]);
             });
         };
 
